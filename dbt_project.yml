@@ -1,4 +1,4 @@
-name: 'ga4'
+name: 'ga4_project'
 version: '6.0.1'
 config-version: 2
 model-paths: ["models"]
@@ -18,3 +18,10 @@ models:
     +materialized: view
     marts:
       +materialized: table
+
+vars:
+  ga4:
+    source_project: "dashboard-419810"
+    property_ids: [335389372]
+    start_date: "20240618"
+    static_incremental_days: 3  # Ensure this is an integer
