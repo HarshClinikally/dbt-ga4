@@ -1,6 +1,8 @@
 name: 'ga4_project'
 version: '6.0.1'
 config-version: 2
+
+# Paths to directories
 model-paths: ["models"]
 analysis-paths: ["analyses"]
 test-paths: ["tests"]
@@ -8,20 +10,21 @@ seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
-target-path: "target"  # directory which will store compiled SQL files
-clean-targets:         # directories to be removed by `dbt clean`
+# Target directory for compiled SQL files
+target-path: "target"
+clean-targets:
   - "target"
   - "dbt_packages"
 
 models:
-  ga4:
+  ga4_project:  # Updated to reflect the new project name
     +materialized: view
     marts:
       +materialized: table
 
 vars:
   ga4:
-    source_project: "dashboard-419810"
-    property_ids: [335389372]
-    start_date: "20240618"
-    static_incremental_days: 3  # Ensure this is an integer
+    source_project: "dashboard-419810" # Project that contains raw GA4 data
+    property_ids: [335389372] # Array of properties to process
+    start_date: "20240618" # Earliest date to load
+    static_incremental_days: 3 # Number of days to scan and reprocess on each run
